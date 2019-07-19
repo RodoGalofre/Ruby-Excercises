@@ -1,8 +1,10 @@
+
+@message = "¿quieres saber si tu palabra es un palindromo? "
 # Metodo de entrada 
 def input_data(message)
     puts "Ingrese la palabra"
     palabra = gets.chomp
-    message = "¿quieres seguir?"
+    @message = "¿quieres seguir?"
     calcula_palin(palabra) 
 end
 
@@ -17,12 +19,12 @@ end
 
 # Metodo para confirmar si el usuario desea introducir más palabras
 def validar_seguir()
-  message = "¿quieres saber si tu palabra es un palindromo? "
-  puts message
+  
+  puts @message
   user_option = gets.chomp
   if user_option == 'si'
 
-    input_data(message)
+    input_data(@message)
   else
     puts "See you later "
   end
