@@ -1,9 +1,11 @@
-puts "ingrese mumero"
-n = gets.to_i
-fac = 1
-for i in 1..n
-    fac = fac * i
+def factorial?(n)
    
-    puts fac
+   factorial_Array = []
+   factor = 1
+   (1...n).each { |i| factorial_Array << factor *= i }
+   return factorial_Array
 end
+
+
+puts factorial?(7)
 
