@@ -1,11 +1,8 @@
-def factorial?(n)
-   
-   factorial_Array = []
+def factorial(n)
+   factorial_capture = []
    factor = 1
-   (1...n).each { |i| factorial_Array << factor *= i }
-   return factorial_Array
+   (1...n).each { |i| factorial_capture << factor *= i }
+   return factorial_capture
 end
 
-
-puts factorial?(7)
-
+puts factorial(7)
