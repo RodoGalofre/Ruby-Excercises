@@ -1,8 +1,8 @@
 def factorial(n)
-  factorial_capture = []
-  factor = 1
-  (1...n).each { |i| factorial_capture << factor *= i }
-  factorial_capture
+  fac = 1
+  (1...n).to_a.inject{ |fac,i| fac *= i}
 end
 
-puts factorial(7)
+puts factorial(10)
+
+ 
