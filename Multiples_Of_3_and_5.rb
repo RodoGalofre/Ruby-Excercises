@@ -1,20 +1,10 @@
-# procedimientos 
-multiples_of_3 = Proc.new do |n|
-n % 3 == 0
+
+def multiples_of_number(number1, number2)
+    multiples_of_three = [] #Arrays para guardar los multiplos de 3
+    multiples_of_five = [] #Arrays para guardar los multiplos de 5
+    (1...1000).each {|i| multiples_of_three << i if i % number1 == 0 } # Rango de 1 a mil saca los multiplos de 3
+    (1...1000).each {|i| multiples_of_five << i if i % number2 == 0 } # Rango de 1 a mil saca los multiplos de 5
+    return multiples_of_three, multiples_of_five # se devuleven los arrays con los multiplos
 end
 
-multiples_of_5 = Proc.new do |n|
-    n % 5 == 0
-end
-# entrada principal
-puts "enter 3 or 5 to see your multiples up to 1000: "
-option = gets.chomp
-case option.to_i
-when 3
-    print (1...1000).to_a.select(&multiples_of_3)
-when 5
-    print (1...1000).to_a.select(&multiples_of_5)
-else
-   puts "wrong option"
-end
-
+puts multiples_of_number(3,5) # se imprimen los multiplos de 3 y 5
