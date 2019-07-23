@@ -1,20 +1,17 @@
-last_prime, cont, i = 0,0,1
-while cont <= 10001
-  count = 2
-  prime_validator = true  
+def see_prime(limit)
+  last_prime, cont, i = 0,0,1
+  while cont <= limit
+    count, prime_validator = 2, true
     while prime_validator && count < i
-      if i % count == 0
-        prime_validator = false
-      else
-        count = count + 1
-      end
+     i % count == 0 ? prime_validator = false : count = count + 1  
     end
-      if prime_validator 
-        if i > last_prime
-          last_prime = i
-          cont += 1
-        end
-    end
-    i += 1
+    if prime_validator 
+      (i > last_prime ? last_prime = i : nil )
+      cont += 1
+    end  
+  i += 1
+  end
+return last_prime
 end
-print "\n\n  The 10001st prime is: ", last_prime , "\n\n"
+
+puts see_prime(10001)
