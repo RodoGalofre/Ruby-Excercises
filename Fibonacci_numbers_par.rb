@@ -1,10 +1,12 @@
-a = 0
-b = 0
-c = 1
-for i in 1..100
-    a = b
+def fibonacci_pars
+  a = 0
+  b = 0
+  c = 1
+
+  (1...100).each do |i| 
+    a = b 
     b = c 
     c = a + b
-   
-    puts c if  c % 2 == 0
+    return c if  c % 2 == 0
+  end
 end
