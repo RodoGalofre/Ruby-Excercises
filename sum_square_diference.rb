@@ -1,14 +1,15 @@
 def square_diferences(rango)
-  sum_square, square_of_the_sum, diference = 0,0,0
   mayorsq, mayorsqs = [],[]
-  (1..rango).each { |i| 
+  square_of_the_sum = 0
+  sum_square = 0
+  diference = 0
+  (1..rango).each do |i| 
     sum_square += i**2
     mayorsq << sum_square
     (square_of_the_sum += i)**4
     mayorsqs << square_of_the_sum**2
-  }
-   diference = mayorsqs.max - mayorsq.max 
+  end
+   mayorsqs.max - mayorsq.max 
 end
    
-
-puts square_diferences(100)
+puts square_diferences(10)
