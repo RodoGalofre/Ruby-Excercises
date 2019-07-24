@@ -6,7 +6,7 @@ def square_diferences(rango)
   (1..rango).each do |i| 
     sum_square += i**2
     mayorsq << sum_square
-    (square_of_the_sum += i)**4
+    (square_of_the_sum += i)**2
     mayorsqs << square_of_the_sum**2
   end
     mayorsqs.max - mayorsq.max 
