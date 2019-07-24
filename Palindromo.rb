@@ -4,10 +4,8 @@ def three_digit_palindrome(limit)
     for j in 100..limit
       possible_p = i*j
       palindrome_valid = possible_p.to_s
-      if palindrome_valid == possible_p.to_s.reverse 
-        if palindrome_valid.to_i > last_palindrome.to_i
+      if palindrome_valid == possible_p.to_s.reverse &&  palindrome_valid.to_i > last_palindrome.to_i
           last_palindrome = palindrome_valid 
-        end
       end
     end
   end
