@@ -1,5 +1,5 @@
 def factorial(n)
-  (1..n).to_a.inject{ |fac,i| fac *= i}
+  (1..n).inject(1){ |fac,i| fac * i}
 end
 
 puts factorial(7)
