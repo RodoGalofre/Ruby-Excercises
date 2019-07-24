@@ -1,10 +1,10 @@
-def calcular_palindromo_3_cifras(limit)
+def three_digit_palindrome(limit)
   last_palindrome = 0
   for i in 100..limit
     for j in 100..limit
-      posible_p = i*j
-      palindrome_valid = posible_p.to_s
-      if palindrome_valid == posible_p.to_s.reverse 
+      possible_p = i*j
+      palindrome_valid = possible_p.to_s
+      if palindrome_valid == possible_p.to_s.reverse 
         if palindrome_valid.to_i > last_palindrome.to_i
           last_palindrome = palindrome_valid 
         end
@@ -14,5 +14,5 @@ def calcular_palindromo_3_cifras(limit)
   last_palindrome
 end
 
-print "palindromo mayor ",calcular_palindromo_3_cifras(1000)
+print "palindromo mayor ",three_digit_palindrome(1000)
 
