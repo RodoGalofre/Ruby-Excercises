@@ -11,7 +11,7 @@ def see_prime(limit)
     end  
   i += 1
   end
-return last_prime
+last_prime
 end
 
 puts see_prime(10001)
