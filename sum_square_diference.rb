@@ -1,5 +1,6 @@
 def square_diferences(rango)
-  mayorsq, mayorsqs = [],[]
+  mayorsq = []
+  mayorsqs = []
   square_of_the_sum = 0
   sum_square = 0
   diference = 0
