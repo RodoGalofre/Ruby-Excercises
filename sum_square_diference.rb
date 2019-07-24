@@ -9,7 +9,7 @@ def square_diferences(rango)
     (square_of_the_sum += i)**4
     mayorsqs << square_of_the_sum**2
   end
-   mayorsqs.max - mayorsq.max 
+    mayorsqs.max - mayorsq.max 
 end
    
 puts square_diferences(10)
