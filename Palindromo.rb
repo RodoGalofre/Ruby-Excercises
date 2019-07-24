@@ -1,31 +1,13 @@
-puts "Palindromo"
-
-class PalindromoExcersise
 def calcular_palindromo_3_cifras()
-
-    palindromo_mayor = 0
-    for i in 100..999
-        for j in 100..999
-            posible_p = i*j
-            piec = posible_p.to_s
-            if piec == posible_p.to_s.reverse 
-                   
-                #puts " #{piec} es un palindromo"
-
-                if piec.to_i > palindromo_mayor.to_i
-                palindromo_mayor = piec
-                end
-
-            # else puts " no es un palindromo "
-            end
-        end
-       #puts " "
-    end
-    puts "Palindromo mayor = #{palindromo_mayor}"
+  last_palindrome = 0
+  for i in 100..999
+   for j in 100..999
+    posible_p = i*j
+    palindrome_valid = posible_p.to_s
+    palindrome_valid == posible_p.to_s.reverse ? (last_palindrome = palindrome_valid if palindrome_valid.to_i > last_palindrome.to_i) : nil
+   end
+  end
+  last_palindrome
 end
-
-obj = PalindromoExcersise.new
-obj.calcular_palindromo_3_cifras()
-
-end
+print "palindromo mayor ",calcular_palindromo_3_cifras()
 
