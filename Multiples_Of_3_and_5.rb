@@ -2,7 +2,8 @@ class Mult
   def initialize(number1,number2)
     @number1 = number1
     @number2 = number2
-    def multiples_of_number
+  end
+  def multiples_of_number
       multiples_of_n = [] 
       (1...1000).each do |i|  
         if i % @number1 == 0 
@@ -12,7 +13,6 @@ class Mult
         end
       end   
       multiples_of_n.reduce :+
-    end
   end
 end
 
