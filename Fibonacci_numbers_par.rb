@@ -8,7 +8,8 @@ class FigonacciSums
     fib_num = 1
     fibo_pars = []
     while fib_num <= @target
-      prev_num, next_num = next_num, fib_num
+      prev_num = next_num 
+      next_num = fib_num
       fib_num = prev_num + next_num
       fibo_pars << fib_num  if fib_num % 2 == 0
     end
