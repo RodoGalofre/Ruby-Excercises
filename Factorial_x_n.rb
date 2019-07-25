@@ -1,7 +1,10 @@
-def factorial(n)
-  (1..n).inject(1){ |fac,i| fac * i}
+class NumberFactor
+  def factorial(n)
+    (1..n).inject(1){ |fac,i| fac * i}
+  end
 end
 
-puts factorial(7)
+factor = NumberFactor.new
+puts factor.factorial(7)
 
  
