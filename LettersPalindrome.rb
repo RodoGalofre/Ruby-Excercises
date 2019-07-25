@@ -1,7 +1,13 @@
-# metodo que calcula si la palabra es un palindromo
-def palindrome?(word)
- word.reverse == word 
-end  
+class LettersPalindrome
+  def initialize(word)
+    @word = word
+  end
+  def palindrome?
+    @word.reverse == @word 
+  end
+end
 
-puts palindrome?('reconocer')
+palind  = LettersPalindrome.new('reconocer')
+puts palind.palindrome?
+
 
