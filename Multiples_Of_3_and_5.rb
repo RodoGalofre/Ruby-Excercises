@@ -1,14 +1,20 @@
-
-def multiples_of_number(number1, number2)
-  multiples_of_n = [] 
-  (1...1000).each do |i|  
-    if i % number1 == 0 
-      multiples_of_n << i 
-    elsif  i % number2 == 0 
-      multiples_of_n << i 
+class Mult
+  def initialize(number1,number2)
+    @number1 = number1
+    @number2 = number2
+    def multiples_of_number
+      multiples_of_n = [] 
+      (1...1000).each do |i|  
+        if i % @number1 == 0 
+          multiples_of_n << i 
+        elsif  i % @number2 == 0 
+          multiples_of_n << i 
+        end
+      end   
+      multiples_of_n.reduce :+
     end
-  end   
-  multiples_of_n.reduce :+
+  end
 end
 
-puts multiples_of_number(3,5) 
+three_five = Mult.new(3,5)
+puts three_five.multiples_of_number
