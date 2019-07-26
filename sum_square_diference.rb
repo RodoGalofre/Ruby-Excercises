@@ -1,16 +1,22 @@
-def square_diferences(rango)
-  mayorsq = []
-  mayorsqs = []
-  square_of_the_sum = 0
-  sum_square = 0
-  diference = 0
-  (1..rango).each do |i| 
-    sum_square += i**2
-    mayorsq << sum_square
-    xpotency = (square_of_the_sum += i)**2
-    mayorsqs << xpotency
+class SumSquares
+  def initialize(rang)
+    @rang = rang
   end
-  mayorsqs.max - mayorsq.max 
+  def square_diferences
+    mayorsq = []
+    mayorsqs = []
+    square_of_the_sum = 0
+    sum_square = 0
+    diference = 0
+    (1..@rang).each do |i| 
+      sum_square += i**2
+      mayorsq << sum_square
+      xpotency = (square_of_the_sum += i)**2
+      mayorsqs << xpotency
+    end
+    mayorsqs.max - mayorsq.max 
+  end
 end
-   
-puts square_diferences(10)
+
+squares = SumSquares.new(100)
+puts squares.square_diferences
