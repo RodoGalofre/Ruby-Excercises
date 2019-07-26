@@ -17,5 +17,6 @@ class SumSquares
     mayorsqs.max - mayorsq.max 
   end
 end
+
 squares = SumSquares.new(100)
 puts squares.square_diferences
