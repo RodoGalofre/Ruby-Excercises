@@ -24,6 +24,5 @@ class SumSquares
         mayorsqs << xpotency
       end
       mayorsqs.max - mayorsq.max 
-
     end
 end
