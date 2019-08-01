@@ -6,5 +6,3 @@ class NumberFactor
     (1..@n).inject(1){ |fac,i| fac * i}
   end
 end
-
-factor = NumberFactor.new(7)
