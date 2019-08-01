@@ -1,4 +1,4 @@
-class FigonacciSums
+class FibonacciSums
   def initialize(target)
     @target = target
   end
@@ -17,5 +17,3 @@ class FigonacciSums
   end
 end
 
-sums = FigonacciSums.new(4000000)
-puts sums.sum_fibonacci_even
