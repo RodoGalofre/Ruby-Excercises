@@ -1,4 +1,3 @@
-
 class TypeError < StandardError; end
 class SumSquares
     def initialize(rang)
