@@ -1,14 +1,14 @@
 
 class TypeError < StandardError; end
-  class SumSquares
+class SumSquares
     def initialize(rang)
       @rang = parse_number(rang)
     end
-    def is_a_number_differ_0?(rang )
+    def is_a_number_differ_0?(rang)
       rang.to_i > 0 
     end
     def parse_number(rang)
-      raise TypeError, 'That isn`t a number' unless is_a_number?(rang)
+      raise TypeError, 'That isn`t a number' unless is_a_number_differ_0?(rang)
       rang
     end
     def square_diferences
@@ -24,5 +24,6 @@ class TypeError < StandardError; end
         mayorsqs << xpotency
       end
       mayorsqs.max - mayorsq.max 
-  end
+
+    end
 end
