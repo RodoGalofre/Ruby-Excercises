@@ -4,7 +4,7 @@ class TypeError < StandardError; end
     def initialize(rang)
       @rang = parse_number(rang)
     end
-    def is_a_number?(rang )
+    def is_a_number_differ_0?(rang )
       rang.to_i > 0 
     end
     def parse_number(rang)
