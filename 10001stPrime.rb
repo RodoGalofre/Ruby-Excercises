@@ -1,9 +1,20 @@
-class TenThousandPrimes
-  def show_prime(limit)
+class ArgumentError < StandardError; end
+class TenThousandPrimes 
+  def initialize(limit)
+    validate_argument(limit)
+    @limit = limit
+  end
+  def valid_range?(limit)
+    limit.is_a?(Integer) && limit >= 0
+  end
+  def validate_argument(limit)
+    raise ArgumentError, 'ERROR INVALID ARGUMENT: Expected 0, negative number or String' unless valid_range?(limit) #true
+  end
+  def show_prime
     last_prime = 0
     cont = 0
     i = 1
-    while cont <= limit
+    while cont <= @limit
       count = 2
       prime_validator = true
       while prime_validator && count < i
@@ -22,6 +33,3 @@ class TenThousandPrimes
     last_prime
   end
 end
-
-thouprint = TenThousandPrimes.new
-print "last prime number is ", thouprint.show_prime(10001)
