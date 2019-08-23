@@ -1,67 +1,50 @@
 require_relative 'User_Validation.rb'
+
 class User
   include Validation
   attr_accessor :id, :data
+
   $users = []
-  
+  @@old_id = 0
+
   def initialize(data)
-    @id ||= nil
     @data = validate_data(data)
-    
   end
-  def create   
-    email_empty?(data)
-    email_exist?(data)
-    email_string?(data)
-    email_valid?(data)
-    first_name_empty?(data)
-    last_name_empty?(data)
-    valid_age?(data)
-    valid_age_float?(data)
-    @id = $users.length + 1
-    $users << self
-  end
-  
+
   class << self
     include Validation
+
     def all
-      @@users
+      $users
     end
-    
+
     def find(id)
-      id_empty?(id)
-      id_float?(id)
-      id_is_valid?(id)
+      valid_id(id)
     end
-    
+
     def where(find_usr)
-      query = []
-      find_usr.each_key do |k|
-        $users.each do |user|
-          if user.data.member?(k) && user.data[k] == find_usr[k]
-            query << user
-          end
-        end
-      end
-      query
+      $users.select { |user| user.data >= find_usr }
     end
-    
+
     def count
       $users.length
     end
   end
-  
+
+  def create
+    validate_fields(data)
+    @@old_id += 1
+    @id = @@old_id
+    $users << self
+    self
+  end
+
   def update(data_parameter)
-    data_parameter.each_key{|key|  data_parameter.delete(key) if !@data.has_key?(key)} 
-    first_name_empty?(data_parameter)
-    last_name_empty?(data_parameter)
-    valid_age_float?(data_parameter)
-    email_empty?(data_parameter)
-    email_exist?(data_parameter)
-    email_valid?(data_parameter)
+    data_parameter.each_key{ |key| data_parameter.delete(key) unless @data.has_key?(key)}
+    validate_update(data_parameter)
     @data.merge!(data_parameter)
   end
-  
+
   def destroy
     $users.delete(self)
   end

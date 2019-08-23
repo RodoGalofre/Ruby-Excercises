@@ -2,85 +2,89 @@ class EmailError < StandardError; end
 class IdError < StandardError; end
 class NamesError < StandardError; end
 class UserDataError < StandardError; end
+
 module Validation
-  
-  def validate_data(data)
-    (raise UserDataError, 'UserData musn´t be empty') unless data != {}
-    (raise UserDataError, 'UserData must be a Hash') unless data.class == Hash
-    data
-    
+
+  # field validations create method
+  def validate_fields(data)
+    %i[email first_name last_name age address].each do |method|
+      send("validate_#{method}", data)
+    end
   end
-  
-  #create method
+
+  # for create method
+  def validate_email(data)
+    field_empty?('email', data[:email])
+    email_exist?(data)
+    email_valid?(data)
+  end
+
+  # envia los metodos con los parametros a los metodos de validación
+  def validate_first_name(data)
+    %i[field_empty? field_float?].each do |method|
+      send(method, 'first_name', data[:first_name])
+    end
+  end
+
+  def validate_last_name(data)
+    %i[field_empty? field_float?].each do |method|
+      send(method, 'last_name',data[:last_name])
+    end
+  end
+
+  def validate_age(data) 
+    %i[field_empty? field_float?].each do |method|
+      send(method, 'age',data[:age])
+    end
+  end
+
+  def validate_address(data)
+    %i[field_empty? field_float?].each do |method|
+      send(method, 'Address', data[:address])
+    end
+  end
+
+  #--------------------------Field-empty-------------------------------
+  def field_empty?(field_name, field)
+    (raise UserDataError, "#{field_name} empty") if field == ''
+  end
+
+  #---------------------------Field-float-type----------------------------
+  def field_float?(field_name, field)
+    (raise UserDataError, "#{field_name} must not be float") if field.class == Float
+  end
+
+  #--------------------------email-validations----------------------------------
+  def email_valid?(data)
+    (raise EmailError, 'email has invalid format.') unless data[:email] =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  end
+
   def email_exist?(data)
     email_find = $users.find { |user| user.data[:email] == data[:email] }
     raise EmailError, 'Email already exists' if email_find
   end
-  def email_empty?(data)
-    (raise EmailError, 'Email empty') if data[:email] == ''
+
+  #------------------------------initialize-------------------------------------
+  def validate_data(data)
+    (raise UserDataError, 'UserData musn´t be empty') unless data != {}
+    (raise UserDataError, 'UserData must be a Hash') unless data.class == Hash
+    data
   end
-  def email_string?(data)
-    
-  end
-  def email_valid?(data)
-    (raise EmailError, 'email must contain @ and a .') unless (data[:email].include? '@') && (data[:email].include? '.')
-  end
-  def first_name_empty?(data)
-    (raise NamesError, 'First name empty') if data[:first_name] == ''
-  end
-  def last_name_empty?(data)
-    (raise NamesError, 'Last name empty') if data[:last_name] == ''
-  end
-  def valid_age?(data)
-    (raise UserDataError, 'age invalid') if data[:age].to_i <= 0
-  end
-  def valid_age_float?(data)
-    (raise UserDataError, 'age must not be float') if data[:age].include? '.'
-  end
-  
-  # update method
-  
-  def email_exist?(data_parameter)
-    email_find = $users.find { |user| user.data[:email] == data_parameter[:email] }
-    raise EmailError, 'Email already exists' if email_find
-  end
-  def email_empty?(data_parameter)
-    (raise EmailError, 'Email empty') if data_parameter[:email] == ''
-  end
-  def email_valid?(data_parameter)
-    (raise EmailError, 'email must contain @ and a .') unless (data_parameter[:email].to_s.include? '@') && (data_parameter[:email].to_s.include? '.') 
-  end
-  
-  def first_name_empty?(data_parameter)
-    if data_parameter.has_key?(:first_name)
-      (raise NamesError, 'First name empty') if data_parameter[:first_name] == ''
-    end
-  end
-  
-  def last_name_empty?(data_parameter)
-    if data_parameter.has_key?(:last_name)
-      (raise NamesError, 'Last name empty') if data_parameter[:last_name] == ''
-    end
-  end
-  
-  def valid_age_float?(data_parameter)
-    (raise UserDataError, 'age must not be float') if data_parameter[:age].class == Float
-  end
-  
-  # find Method
-  
-  def id_is_valid?(id)
-    (raise IdError, "ID can't be '0', negative number or string") unless id.to_i > 0
+
+  #----------------------------------find---------------------------------------
+  def valid_id(id)
+    (raise IdError, 'id must not be empty') if id == ''
     @usr = $users.find{ |user| user.id == id.to_i}
-    (raise IdError, "User no found") unless @usr
+    (raise IdError, 'User no found') unless @usr
     @usr
   end
-  
-  def id_empty?(id)
-    (raise IdError, "id mustn't be empty") if id == ''
-  end
-  
-  def id_float?(id)
-    (raise IdError, "Id must not be float") if id.class == Float
+
+  #------------------------------update-method----------------------------------
+  # validación de campos create method
+  def validate_update(data_parameter)
+    keys = %i[email first_name last_name age address]
+    keys.each do |method|
+      send("validate_#{method}", data_parameter) if data_parameter.key?(method.intern)
+    end
   end
 end
